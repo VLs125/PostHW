@@ -2,22 +2,25 @@ package org.netology_exceptions
 
 class WallService : WallInterface {
     private var postArray: Array<Post> = emptyArray()
-    private var indexes = 1
+    private var uniqueId = 1
     override fun add(post: Post): Post {
-        val addedPostIndex = indexes
-        post.id = addedPostIndex
-        postArray += post
-        indexes++
-        return postArray[addedPostIndex - 1]
+        val addedPostId = uniqueId
+        val postCopy = post.copy()
+        postCopy.id = addedPostId
+        postArray += postCopy
+        uniqueId++
+        return postCopy
 
     }
 
     override fun update(post: Post): Boolean {
-        try {
-            postArray[post.id - 1] = post
-            return true
-        } catch (ex: IndexOutOfBoundsException) {
-            return false
+        var isUpdated = false
+        postArray.forEachIndexed { i, el ->
+            if (el.id == post.id) {
+                postArray[i] = post
+                isUpdated = true
+            }
         }
+        return isUpdated
     }
 }
