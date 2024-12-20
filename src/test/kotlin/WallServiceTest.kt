@@ -34,9 +34,9 @@ class WallServiceTest {
             fromId = 1,
             createdBy = 2,
             text = "тестовый пост1",
-            likes = Likes(),
+            likes = null,
             geo = Geo(),
-            reposts = Reposts(),
+            reposts = null,
             vies = Vies()
         )
         val post2 = Post(
