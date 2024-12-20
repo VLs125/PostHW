@@ -16,7 +16,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = null
         )
         val wall = WallService()
 
@@ -37,7 +38,8 @@ class WallServiceTest {
             likes = null,
             geo = Geo(),
             reposts = null,
-            vies = Vies()
+            vies = Vies(),
+            attachments = null
         )
         val post2 = Post(
             ownerId = 2,
@@ -47,7 +49,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = null
         )
         val post3 = Post(
             ownerId = 3,
@@ -57,7 +60,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = null
         )
         val postUpdate = Post(
             id = 1,
@@ -68,7 +72,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = null
         )
 
         wall.add(post1)
@@ -77,6 +82,7 @@ class WallServiceTest {
         assertTrue(wall.update(postUpdate))
 
     }
+
     @Test
     fun negativeUpdateTest() {
         val wall = WallService()
@@ -88,7 +94,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = null
         )
         val post3 = Post(
             ownerId = 3,
@@ -98,7 +105,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = null
         )
         val postUpdate = Post(
             id = 6,
@@ -109,7 +117,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = null
         )
 
         wall.add(post2)
