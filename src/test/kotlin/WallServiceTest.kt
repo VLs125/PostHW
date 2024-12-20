@@ -126,4 +126,29 @@ class WallServiceTest {
         assertFalse(wall.update(postUpdate))
 
     }
+
+    @Test
+    fun postivieAddWithAttachments() {
+        val post = Post(
+            ownerId = 1,
+            fromId = 1,
+            createdBy = 2,
+            text = "тестовый пост",
+            likes = Likes(),
+            geo = Geo(),
+            reposts = Reposts(),
+            vies = Vies(),
+            attachments = AppAttachment(App(2, 3, "130", "604"))
+        )
+        val wall = WallService()
+
+        val addedPost = wall.add(post)
+        assertTrue(addedPost.id == 1)
+        assertTrue(addedPost.ownerId == 1)
+        assertTrue(addedPost.text == "тестовый пост")
+        assertTrue(addedPost.attachments?.type == "app")
+
+    }
+
+
 }
