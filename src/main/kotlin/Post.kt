@@ -12,11 +12,11 @@ data class Post(
     var friendsOnly: Boolean = false,
     var comments: ArrayList<Comments> = arrayListOf(),
     var copyright: String = "without copyrights",
-    var likes: Likes,
-    var reposts: Reposts,
+    var likes: Likes?,
+    var reposts: Reposts?,
     var vies: Vies,
     var postType: PostType = PostType.post,
-    var attachments: Array<Byte> = emptyArray(),
+    var attachments: List<AttachmentInterface?>,
     val geo: Geo,
     val signerId: Int = 0,
     var copyHistory: Array<Post> = emptyArray(),
@@ -57,7 +57,6 @@ data class Post(
         if (reposts != other.reposts) return false
         if (vies != other.vies) return false
         if (postType != other.postType) return false
-        if (!attachments.contentEquals(other.attachments)) return false
 
         return true
     }
@@ -78,7 +77,6 @@ data class Post(
         result = 31 * result + reposts.hashCode()
         result = 31 * result + vies.hashCode()
         result = 31 * result + postType.hashCode()
-        result = 31 * result + attachments.contentHashCode()
         return result
     }
 }

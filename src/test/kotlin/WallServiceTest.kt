@@ -16,7 +16,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = listOf(null)
         )
         val wall = WallService()
 
@@ -34,10 +35,11 @@ class WallServiceTest {
             fromId = 1,
             createdBy = 2,
             text = "тестовый пост1",
-            likes = Likes(),
+            likes = null,
             geo = Geo(),
-            reposts = Reposts(),
-            vies = Vies()
+            reposts = null,
+            vies = Vies(),
+            attachments = listOf(null)
         )
         val post2 = Post(
             ownerId = 2,
@@ -47,7 +49,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = listOf(null)
         )
         val post3 = Post(
             ownerId = 3,
@@ -57,7 +60,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = listOf(null)
         )
         val postUpdate = Post(
             id = 1,
@@ -68,7 +72,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = listOf(null)
         )
 
         wall.add(post1)
@@ -77,6 +82,7 @@ class WallServiceTest {
         assertTrue(wall.update(postUpdate))
 
     }
+
     @Test
     fun negativeUpdateTest() {
         val wall = WallService()
@@ -88,7 +94,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = listOf(null)
         )
         val post3 = Post(
             ownerId = 3,
@@ -98,7 +105,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = listOf(null)
         )
         val postUpdate = Post(
             id = 6,
@@ -109,7 +117,8 @@ class WallServiceTest {
             likes = Likes(),
             geo = Geo(),
             reposts = Reposts(),
-            vies = Vies()
+            vies = Vies(),
+            attachments = listOf(null)
         )
 
         wall.add(post2)
@@ -117,4 +126,29 @@ class WallServiceTest {
         assertFalse(wall.update(postUpdate))
 
     }
+
+    @Test
+    fun postivieAddWithAttachments() {
+        val post = Post(
+            ownerId = 1,
+            fromId = 1,
+            createdBy = 2,
+            text = "тестовый пост",
+            likes = Likes(),
+            geo = Geo(),
+            reposts = Reposts(),
+            vies = Vies(),
+            attachments = listOf(AppAttachment(App(2, 3, "130", "604")))
+        )
+        val wall = WallService()
+
+        val addedPost = wall.add(post)
+        assertTrue(addedPost.id == 1)
+        assertTrue(addedPost.ownerId == 1)
+        assertTrue(addedPost.text == "тестовый пост")
+        assertTrue(addedPost.attachments.get(0)?.type == "app")
+
+    }
+
+
 }
