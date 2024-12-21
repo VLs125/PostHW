@@ -17,7 +17,7 @@ class WallServiceTest {
             geo = Geo(),
             reposts = Reposts(),
             vies = Vies(),
-            attachments = null
+            attachments = listOf(null)
         )
         val wall = WallService()
 
@@ -39,7 +39,7 @@ class WallServiceTest {
             geo = Geo(),
             reposts = null,
             vies = Vies(),
-            attachments = null
+            attachments = listOf(null)
         )
         val post2 = Post(
             ownerId = 2,
@@ -50,7 +50,7 @@ class WallServiceTest {
             geo = Geo(),
             reposts = Reposts(),
             vies = Vies(),
-            attachments = null
+            attachments = listOf(null)
         )
         val post3 = Post(
             ownerId = 3,
@@ -61,7 +61,7 @@ class WallServiceTest {
             geo = Geo(),
             reposts = Reposts(),
             vies = Vies(),
-            attachments = null
+            attachments = listOf(null)
         )
         val postUpdate = Post(
             id = 1,
@@ -73,7 +73,7 @@ class WallServiceTest {
             geo = Geo(),
             reposts = Reposts(),
             vies = Vies(),
-            attachments = null
+            attachments = listOf(null)
         )
 
         wall.add(post1)
@@ -95,7 +95,7 @@ class WallServiceTest {
             geo = Geo(),
             reposts = Reposts(),
             vies = Vies(),
-            attachments = null
+            attachments = listOf(null)
         )
         val post3 = Post(
             ownerId = 3,
@@ -106,7 +106,7 @@ class WallServiceTest {
             geo = Geo(),
             reposts = Reposts(),
             vies = Vies(),
-            attachments = null
+            attachments = listOf(null)
         )
         val postUpdate = Post(
             id = 6,
@@ -118,7 +118,7 @@ class WallServiceTest {
             geo = Geo(),
             reposts = Reposts(),
             vies = Vies(),
-            attachments = null
+            attachments = listOf(null)
         )
 
         wall.add(post2)
@@ -138,7 +138,7 @@ class WallServiceTest {
             geo = Geo(),
             reposts = Reposts(),
             vies = Vies(),
-            attachments = AppAttachment(App(2, 3, "130", "604"))
+            attachments = listOf(AppAttachment(App(2, 3, "130", "604")))
         )
         val wall = WallService()
 
@@ -146,7 +146,7 @@ class WallServiceTest {
         assertTrue(addedPost.id == 1)
         assertTrue(addedPost.ownerId == 1)
         assertTrue(addedPost.text == "тестовый пост")
-        assertTrue(addedPost.attachments?.type == "app")
+        assertTrue(addedPost.attachments.get(0)?.type == "app")
 
     }
 

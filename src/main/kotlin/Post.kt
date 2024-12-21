@@ -16,7 +16,7 @@ data class Post(
     var reposts: Reposts?,
     var vies: Vies,
     var postType: PostType = PostType.post,
-    var attachments: AttachmentInterface?,
+    var attachments: List<AttachmentInterface?>,
     val geo: Geo,
     val signerId: Int = 0,
     var copyHistory: Array<Post> = emptyArray(),
