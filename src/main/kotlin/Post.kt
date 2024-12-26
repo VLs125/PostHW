@@ -10,7 +10,7 @@ data class Post(
     var replyOwnerId: Int = 0,
     var replyPostId: Int = 0,
     var friendsOnly: Boolean = false,
-    var comments: ArrayList<Comments> = arrayListOf(),
+    var comments: ArrayList<Comment> = arrayListOf(),
     var copyright: String = "without copyrights",
     var likes: Likes?,
     var reposts: Reposts?,
@@ -81,12 +81,12 @@ data class Post(
     }
 }
 
-data class Comments(
-    var count: Int = 0,
+data class Comment(
     var canPost: Boolean = true,
     var gropCanPosts: Boolean = true,
     var canClose: Boolean = true,
-    var canOpen: Boolean = true
+    var canOpen: Boolean = true,
+    val text: String
 )
 
 data class Likes(

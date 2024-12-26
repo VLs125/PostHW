@@ -3,6 +3,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 import org.netology_exceptions.*
+import org.netology_exceptions.exceptions.PostNotFoundException
 
 class WallServiceTest {
 
@@ -148,6 +149,51 @@ class WallServiceTest {
         assertTrue(addedPost.text == "тестовый пост")
         assertTrue(addedPost.attachments.get(0)?.type == "app")
 
+    }
+
+    @Test
+    fun postivieAddWithComments() {
+        val post = Post(
+            ownerId = 1,
+            fromId = 1,
+            createdBy = 2,
+            text = "тестовый пост",
+            likes = Likes(),
+            geo = Geo(),
+            reposts = Reposts(),
+            vies = Vies(),
+            attachments = listOf(null),
+            comments = arrayListOf(Comment(text = "тест коммент"))
+        )
+        val wall = WallService()
+
+        val addedPost = wall.add(post)
+        assertTrue(addedPost.id == 1)
+        assertTrue(addedPost.ownerId == 1)
+        assertTrue(addedPost.text == "тестовый пост")
+        assertTrue(addedPost.comments.first().text == "тест коммент")
+
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrowPostNotFoundExcpetionTest() {
+        val post = Post(
+            ownerId = 1,
+            fromId = 1,
+            createdBy = 2,
+            text = "тестовый пост",
+            likes = Likes(),
+            geo = Geo(),
+            reposts = Reposts(),
+            vies = Vies(),
+            attachments = listOf(null),
+            comments = arrayListOf(Comment(text = "тест коммент"))
+        )
+        val wall = WallService()
+
+        wall.add(post)
+
+        wall.createComment(2, Comment(text = "новый коммент"))
     }
 
 
